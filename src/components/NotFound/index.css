@@ -1,0 +1,39 @@
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin-left: 20%;
+  margin-top: 5%;
+  height: 50vh;
+  padding: 10px;
+}
+.not-found-img {
+  width: 400px;
+}
+
+.buttonel {
+  border-radius: 40%;
+  background-color: azure;
+  padding: 10px;
+}
+.labelel {
+  font-size: 15px;
+  text-align: left;
+  font-family: roboto;
+  padding: 10px;
+  margin: 5px;
+}
+.inputel {
+  width: 100%;
+  font-family: roboto;
+}
+
+.buttonelement {
+  background-color: #1877f2;
+  color: white;
+  width: 30%;
+  margin: 5px;
+  padding: 10px;
+}
