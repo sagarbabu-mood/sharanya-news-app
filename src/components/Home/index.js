@@ -7,15 +7,33 @@ import {Link, withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import ProductCard from '../ProductCard'
 import Header from '../Header'
+import TabItem from '../TabItem'
+
 import './index.css'
 
+const tabsList = [
+  {tabId: 'LEVIS', displayText: 'Levis'},
+  {tabId: 'All', displayText: 'All'},
+  {tabId: 'MAJIK', displayText: 'Majik'},
+  {tabId: 'Amazon', displayText: 'Amazon'},
+  {tabId: 'Nova', displayText: 'Nova'},
+]
 class Home extends Component {
   state = {
     news: [],
+    activeTabId: tabsList[0].tabId,
   }
 
   componentDidMount() {
     this.getProducts()
+  }
+  onClickProfile = jwtToken => {
+    const {history} = this.props
+    Cookies.set('jwt_token', jwtToken, {
+      expires: 30,
+      path: '/not-found',
+    })
+    history.replace('/not-found')
   }
 
   getProducts = async () => {
@@ -44,18 +62,21 @@ class Home extends Component {
       })
     }
   }
+  clickTabItem = tabValue => {
+    this.setState({activeTabId: tabValue})
+  }
 
-  onClickProfile = jwtToken => {
-    const {history} = this.props
-    Cookies.set('jwt_token', jwtToken, {
-      expires: 30,
-      path: '/not-found',
-    })
-    history.replace('/not-found')
+  getFilteredProjects = () => {
+    const {activeTabId, news} = this.state
+    const filteredProjects = news.filter(
+      eachprojectDetails => eachprojectDetails.brand === activeTabId,
+    )
+    return filteredProjects
   }
 
   render() {
-    const {news} = this.state
+    const {news, activeTabId} = this.state
+    const filteredProjects = this.getFilteredProjects()
     return (
       <>
         <Header />
@@ -78,47 +99,17 @@ class Home extends Component {
             </a>
           </div>
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link
-                className="nav-link active"
-                aria-current="page"
-                to={news.brand}
-              >
-                All
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link active"
-                aria-current="page"
-                to={'news.brand'}
-              >
-                MAJIK
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to={news.brand}>
-                LEVIS
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to={news.brand}>
-                Mufti
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to={news.brand}>
-                Nova
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to={news.brand}>
-                Amazon
-              </Link>
-            </li>
+            {tabsList.map(tabDetails => (
+              <TabItem
+                key={tabDetails.tabId}
+                tabDetails={tabDetails}
+                clickTabItem={this.clickTabItem}
+                isActive={activeTabId === tabDetails.tabId}
+              />
+            ))}
           </ul>
           <ul className="products-list">
-            {news.map(product => (
+            {filteredProjects.map(product => (
               <ProductCard productData={product} key={product.id} />
             ))}
           </ul>
