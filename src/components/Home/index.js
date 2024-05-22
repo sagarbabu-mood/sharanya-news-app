@@ -45,8 +45,13 @@ class Home extends Component {
     }
   }
 
-  onClickProfile = () => {
-    return
+  onClickProfile = jwtToken => {
+    const {history} = this.props
+    Cookies.set('jwt_token', jwtToken, {
+      expires: 30,
+      path: '/not-found',
+    })
+    history.replace('/not-found')
   }
 
   render() {
