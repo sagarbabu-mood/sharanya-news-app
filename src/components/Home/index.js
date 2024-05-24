@@ -12,8 +12,8 @@ import TabItem from '../TabItem'
 import './index.css'
 
 const tabsList = [
-  {tabId: 'LEVIS', displayText: 'Levis'},
   {tabId: 'All', displayText: 'All'},
+  {tabId: 'LEVIS', displayText: 'Levis'},  
   {tabId: 'MAJIK', displayText: 'Majik'},
   {tabId: 'Amazon', displayText: 'Amazon'},
   {tabId: 'Nova', displayText: 'Nova'},
@@ -75,7 +75,7 @@ class Home extends Component {
   }
 
   render() {
-    const {news, activeTabId} = this.state
+    const {activeTabId, news} = this.state
     const filteredProjects = this.getFilteredProjects()
     return (
       <>
@@ -108,11 +108,19 @@ class Home extends Component {
               />
             ))}
           </ul>
-          <ul className="products-list">
-            {filteredProjects.map(product => (
-              <ProductCard productData={product} key={product.id} />
-            ))}
-          </ul>
+          {activeTabId === 'All' ? (
+            <ul className="products-list">
+              {news.map(product => (
+                <ProductCard productData={product} key={product.id} />
+              ))}
+            </ul>
+          ) : (
+            <ul className="products-list">
+              {filteredProjects.map(product => (
+                <ProductCard productData={product} key={product.id} />
+              ))}
+            </ul>
+          )}
           <footer className="footersec">
             <div className="footercontainers">
               <MdHome size="20" />
