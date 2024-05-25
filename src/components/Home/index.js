@@ -13,7 +13,7 @@ import './index.css'
 
 const tabsList = [
   {tabId: 'All', displayText: 'All'},
-  {tabId: 'LEVIS', displayText: 'Levis'},  
+  {tabId: 'LEVIS', displayText: 'Levis'},
   {tabId: 'MAJIK', displayText: 'Majik'},
   {tabId: 'Amazon', displayText: 'Amazon'},
   {tabId: 'Nova', displayText: 'Nova'},
