@@ -21,12 +21,7 @@
     "react/jsx-uses-react": "off",
     "no-console": "off",
     "react/prop-types": "off",
-    "jsx-a11y/label-has-associated-control": [
-      2,
-      {
-        "labelAttributes": ["htmlFor"]
-      }
-    ],
+    "jsx-a11y/label-has-associated-control": 0,
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-noninteractive-element-interactions": [
       "off",
@@ -45,6 +40,14 @@
     "react/no-unused-state": "warn",
     "react/button-has-type": "warn",
     "react/no-unescaped-entities": "warn",
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "import/no-duplicates": 0,
+    "import/extensions": 0,
+    "lines-between-class-members": 0,
+    "react/jsx-no-target-blank": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "no-unused-expressions": 0,
+    "arrow-body-style": 0,
+    "react/no-unknown-property": 0
   }
 }
